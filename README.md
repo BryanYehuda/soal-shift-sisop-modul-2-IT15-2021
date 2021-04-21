@@ -174,8 +174,8 @@ for(int capek=0; capek<3;capek++){
 ```
 kami membuat perulangan for sebanyak 3 kali, dimana disetiap perulangan kami akan melakukan "execv("/bin/mkdir", argv[capek]); " untuk setiap argv[capek] akan mengambil nilai dari variabel *argv. setelah kode dijalankan, maka akan terbentuk 3 folder
 
-### b, c, dan d. Mendownload dan melakukan ekstrak dan memindahkan ke folder yang sudah dibuat.
-untuk melakukan kedua tugas ini, kami menggunakan fungsi fork() untuk spawning proses baru. pada child kami akan melakukan download, lalu pada parent kami akan wait sampai proses di child selesai, lalu kami lakukan ekstrak setelahnya ke masing masing folder yang sudah dibuat pada soal a
+### b, c, dan d 
+Mendownload dan melakukan ekstrak dan memindahkan ke folder yang sudah dibuat. untuk melakukan kedua tugas ini, kami menggunakan fungsi fork() untuk spawning proses baru. pada child kami akan melakukan download, lalu pada parent kami akan wait sampai proses di child selesai, lalu kami lakukan ekstrak setelahnya ke masing masing folder yang sudah dibuat pada soal a
 
 untuk proses mendownload zip kami menggunakan wget dan kami simpan di variabel argv1 dan dilakukan dalam proses child:
 ```
@@ -213,6 +213,50 @@ for(int sangatCapek=0; sangatCapek<3;sangatCapek++){
 }
 ```
 untuk setiap for yang dilakukan, maka akan menjalankan perintah execv yang berisi perintah yang sudah kita simpan di argv3 sebelumnya.   
+
+### E dan F
+Untuk membuat program berjalan di latarbelakang, kami menggunakan template daemon proses yang sudah disediakan pada modul github. berikut adalah kode template nya
+```
+int main() {
+  pid_t pid, sid;        // Variabel untuk menyimpan PID
+
+  pid = fork();     // Menyimpan PID dari Child Process
+
+  /* Keluar saat fork gagal
+  * (nilai variabel pid < 0) */
+  if (pid < 0) {
+    exit(EXIT_FAILURE);
+  }
+
+  /* Keluar saat fork berhasil
+  * (nilai variabel pid adalah PID dari child process) */
+  if (pid > 0) {
+    exit(EXIT_SUCCESS);
+  }
+
+  umask(0);
+
+  sid = setsid();
+  if (sid < 0) {
+    exit(EXIT_FAILURE);
+  }
+
+  if ((chdir("/")) < 0) {
+    exit(EXIT_FAILURE);
+  }
+
+  close(STDIN_FILENO);
+  close(STDOUT_FILENO);
+  close(STDERR_FILENO);
+
+  while (1) {
+    // Tulis program kalian di sini
+
+    sleep(30);
+  }
+}
+```
+dalam kode while(1) tersebutlah kami akan memaksukkan kode yang sudah kami buat. Ada sebuah aturan dalam soal dimana proses a dan b berjalan 6 jam sebelum ulang tahun stefany. maka hal pertama yang kami lakukan adalah untuk mengubah tanggal ulang tahun stefany kedalam bentuk epoch time. sehingga didapatkan format ulangtahun stefany adalah **1617960120**
 ### Kendala Yang Dihadapi Soal 1
 
 ### Screenshot Hasil Run Soal 1
