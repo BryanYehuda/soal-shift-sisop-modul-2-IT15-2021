@@ -163,7 +163,7 @@ int main() {
 ```
 
 ### Penjelasan Code Soal 1
-# a. Membuat folder fylm, musyik, dan juga pyoto
+### a. Membuat folder fylm, musyik, dan juga pyoto
 untuk membuat folder tersebut, kami menggunakan kode sebagai berikut
 ```
 char *argv[][6] = {{"mkdir","Fylm",NULL},{"mkdir","Musyik",NULL},{"mkdir","Pyoto",NULL}};
@@ -174,7 +174,7 @@ for(int capek=0; capek<3;capek++){
 ```
 kami membuat perulangan for sebanyak 3 kali, dimana disetiap perulangan kami akan melakukan "execv("/bin/mkdir", argv[capek]); " untuk setiap argv[capek] akan mengambil nilai dari variabel *argv. setelah kode dijalankan, maka akan terbentuk 3 folder
 
-# b dan c dan d. Mendownload dan melakukan ekstrak dan memindahkan ke folder yang sudah dibuat.
+### b dan c dan d. Mendownload dan melakukan ekstrak dan memindahkan ke folder yang sudah dibuat.
 untuk melakukan kedua tugas ini, kami menggunakan fungsi fork() untuk spawning proses baru. pada child kami akan melakukan download, lalu pada parent kami akan wait sampai proses di child selesai, lalu kami lakukan ekstrak setelahnya ke masing masing folder yang sudah dibuat pada soal a
 
 untuk proses mendownload zip kami menggunakan wget dan kami simpan di variabel argv1 dan dilakukan dalam proses child:
