@@ -166,6 +166,20 @@ while(1){
     sleep(30);
 }
 ```
+dapat dilihat bahwa ketika waktu sudah 6 jam sebelum ulang tahun stefany maka jalankan kode a,b,c, dan d. sedangkan jika sudah pada jam ulang tahun stefany maka jalankan proses f. Untuk proses f kami memanggil fungsi fork() supaya bisa menjalankan 2 proses. 
+```
+child_pid2 = fork();
+if(child_pid2 == 0){
+    char *zipAkhir[]= {"zip","-r","Lopyu_Stevany.zip","Fylm","Musyik","Pyoto",NULL};
+    execv("/bin/zip", zipAkhir); 
+}else{
+    while ((wait(&status)) > 0);
+    char *hapus[]= {"rm","-r","Fylm","Musyik","Pyoto",NULL};
+    execv("/bin/rm", hapus); 
+    exit(1);
+}
+```
+pada child proses kami melakukan zip untuk membuat files Lopyu_Stefany.zip dengan perintah "zip". tag "-r" digunakan untuk melakukan zip pada sebuah directory/folder. Pada parent proses kami menggunakan perintah "rm" untuk menghapus folder folder yang sudah dibuat sebelumnya.
 
 ### Code Soal 1 lengkap
 ```c
@@ -275,9 +289,11 @@ int main() {
 }
 ```
 ### Kendala Yang Dihadapi Soal 1
-
+1. Tanggal dan waktu jika dirubah ke tanggal ulang tahun stefany akan membuat browser saya tidak bisa mengkases internet, dan jika ingin melakuakn wget akan menghasilkan forbidden
 ### Screenshot Hasil Run Soal 1
-
+![image](https://user-images.githubusercontent.com/50267676/115584297-e30e0980-a2f4-11eb-80b5-d853f033bd7c.png)
+![image](https://user-images.githubusercontent.com/50267676/115584380-f4571600-a2f4-11eb-98d8-8807f0f927eb.png)
+![image](https://user-images.githubusercontent.com/50267676/115584510-0638b900-a2f5-11eb-8dda-dfb3cc671cb2.png)
 ---
 
 ## Soal 2
