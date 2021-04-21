@@ -174,7 +174,7 @@ for(int capek=0; capek<3;capek++){
 ```
 kami membuat perulangan for sebanyak 3 kali, dimana disetiap perulangan kami akan melakukan "execv("/bin/mkdir", argv[capek]); " untuk setiap argv[capek] akan mengambil nilai dari variabel *argv. setelah kode dijalankan, maka akan terbentuk 3 folder
 
-b dan c. Mendownload dan melakukan ekstrak
+b dan c. Mendownload dan melakukan ekstrak.
 untuk melakukan kedua tugas ini, kami menggunakan fungsi fork() untuk spawning proses baru. pada child kami akan melakukan download, lalu pada parent kami akan wait sampai proses di child selesai, lalu kami lakukan ekstrak setelahnya ke masing masing folder yang sudah dibuat pada soal a
 
 untuk proses mendownload zip kami menggunakan wget dan kami simpan di variabel argv1 dan dilakukan dalam proses child:
@@ -186,7 +186,7 @@ char *argv1[][10] =
         { "wget","-q","--no-check-certificate","https://drive.google.com/uc?id=1FsrAzb9B5ixooGUs0dGiBr-rC7TS9wTD&export=download", "-O","Foto_for_Stevany.zip",NULL}
     };
 ```
-untuk melakukan proses download, kami menggunakan perulangan for sebanyak 3, dan untuk setiap perulangan akan menjalankan 1 argumen dari variabel wget
+untuk melakukan proses download, kami menggunakan perulangan for sebanyak 3, dan untuk setiap perulangan akan menjalankan 1 argumen dari variabel argv1
 ```
 for(int mulaiCapek=0;mulaiCapek<3;mulaiCapek++){
     if(fork()==0) continue;
