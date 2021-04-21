@@ -449,7 +449,7 @@ int main(int argc, char* argv[])
     if(cid < 0) exit(0);
     if(cid = 0)
     {
-        char *command[] = {"chmod", "u+x", "kill.sh", NULL};
+        char *command[] = {"chmod", "u+x", "turnoff.sh", NULL};
         execv("/bin/chmod", command);
     }
     while(wait(&stat) > 0);
