@@ -256,7 +256,24 @@ int main() {
   }
 }
 ```
-dalam kode while(1) tersebutlah kami akan memaksukkan kode yang sudah kami buat. Ada sebuah aturan dalam soal dimana proses a dan b berjalan 6 jam sebelum ulang tahun stefany. maka hal pertama yang kami lakukan adalah untuk mengubah tanggal ulang tahun stefany kedalam bentuk epoch time. sehingga didapatkan format ulangtahun stefany adalah **1617960120**
+dalam kode while(1) tersebutlah kami akan memaksukkan kode yang sudah kami buat. Ada sebuah aturan dalam soal dimana proses a dan b berjalan 6 jam sebelum ulang tahun stefany. maka hal pertama yang kami lakukan adalah untuk mengubah tanggal ulang tahun stefany kedalam bentuk epoch time. sehingga didapatkan format 6 jam sebelum ulangtahun stefany adalah **1617960120** sedangkan waktu ulang tahun stefany adalah **16171985320**. Soal juga meminta untuk ketika sudah jam ulang tahunnya stefany maka semua folder yang sudah dibuat di zip kembali dengan format tertentu lalu dihapus. Untuk melakukan pengecekan time kami menggunakan library time.h. berikut adalah implementasi nya
+```
+time_t now = time(NULL);
+int batas = 1;
+while(1){
+    // Tulis program kalian di sini
+    now = time(NULL);
+    //melakukan timecheck apakah sudah kurang dari 6 jam
+    if(now >= 1617960120 && batas == 1){
+        batas++;
+        // kode untuk menjalankan a,b,c, dan d
+    }else if(now >= 16171985320){
+        //kode setelah jam d-day
+        // kode untuk menjalankan proses f
+    }
+    sleep(30);
+}
+```
 ### Kendala Yang Dihadapi Soal 1
 
 ### Screenshot Hasil Run Soal 1
