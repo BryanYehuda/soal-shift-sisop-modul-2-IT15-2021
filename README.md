@@ -163,7 +163,16 @@ int main() {
 ```
 
 ### Penjelasan Code Soal 1
-
+a. Membuat folder fylm, musyik, dan juga pyoto
+untuk membuat folder tersebut, kami menggunakan kode sebagai berikut
+```
+char *argv[][6] = {{"mkdir","Fylm",NULL},{"mkdir","Musyik",NULL},{"mkdir","Pyoto",NULL}};
+for(int capek=0; capek<3;capek++){
+        if(fork()==0) continue;
+	execv("/bin/mkdir", argv[capek]); 
+}
+```
+kami membuat perulangan for sebanyak 3 kali, dimana disetiap perulangan kami akan melakukan "execv("/bin/mkdir", argv[capek]); "
 ### Kendala Yang Dihadapi Soal 1
 
 ### Screenshot Hasil Run Soal 1
