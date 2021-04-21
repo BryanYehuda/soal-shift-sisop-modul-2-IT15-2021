@@ -136,7 +136,7 @@ int main() {
                 char *argv3[][10]= {
                     {"unzip","-j","Film_for_Stevany.zip","-d","./Fylm",NULL},
                     {"unzip","-j","Musik_for_Stevany.zip","-d","./Musyik",NULL},        
-                    {"unzip","-j","Foto_for_Stevany.zip","-d","./Pyoto",NULL}
+                    {"unzip","-j","Foto_for_Stevany.zip","*.jpg","-d","./Pyoto",NULL}
                 };
                 for(int sangatCapek=0; sangatCapek<3;sangatCapek++){
                     if(fork()==0) continue;
@@ -194,6 +194,25 @@ for(int mulaiCapek=0;mulaiCapek<3;mulaiCapek++){
     execv("/bin/wget", argv1[mulaiCapek]); 
 }
 ```
+Untuk melakukan ekstrak dari setiap zip yang sudah di download kami menggunakan perintah unzip yang kami simpan di variabel argv2
+```
+char *argv3[][10]= 
+{
+    {"unzip","-j","Film_for_Stevany.zip","-d","./Fylm",NULL},
+    {"unzip","-j","Musik_for_Stevany.zip","-d","./Musyik",NULL},        
+    {"unzip","-j","Foto_for_Stevany.zip","*.jpg","-d","./Pyoto",NULL}
+};
+```
+tag "-j" diperlukan supaya tidak membentuk sebuah folder baru jika di ektrak. Tag "-d" digunakan untuk menentukan zip yang akan diunzip akan diekstrak ke folder yang mana. dapat dilihat juga pada argv[2], bahwa kami menggunakan "*.jpg" hal ini digunakan agar program hanya mengekstrak file yang berekstensi jpg saja.
+Untuk menjalankan perintah tersebut, kami menggunakan perulangan for kembali sebanyak tiga kali
+```
+for(int sangatCapek=0; sangatCapek<3;sangatCapek++){
+    if(fork()==0) continue;
+    sleep(10);
+    execv("/bin/unzip", argv3[sangatCapek]); 
+}
+```
+untuk setiap for yang dilakukan, maka akan menjalankan perintah execv yang berisi perintah yang sudah kita simpan di argv3 sebelumnya   
 ### Kendala Yang Dihadapi Soal 1
 
 ### Screenshot Hasil Run Soal 1
