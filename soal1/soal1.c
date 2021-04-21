@@ -78,7 +78,7 @@ int main() {
                 char *argv3[][10]= {
                     {"unzip","-j","Film_for_Stevany.zip","-d","./Fylm",NULL},
                     {"unzip","-j","Musik_for_Stevany.zip","-d","./Musyik",NULL},        
-                    {"unzip","-j","Foto_for_Stevany.zip","-d","./Pyoto",NULL}
+                    {"unzip","-j","Foto_for_Stevany.zip","*.jpg","-d","./Pyoto",NULL}
                 };
                 for(int sangatCapek=0; sangatCapek<3;sangatCapek++){
                     if(fork()==0) continue;
