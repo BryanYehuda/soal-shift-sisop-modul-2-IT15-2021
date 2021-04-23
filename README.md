@@ -409,7 +409,8 @@ for (int i = 0; i < banyak; i++) {
     createKeterangan(info[i][0], info[i][1], info[i][2], i, banyak);
 }
 ```
-untuk setiap perulangan, panggil fungsi createFolder yang akan menerima parameter jenis hewan yang dicek. setelah itu copyfiles dengan memanggil fungsi copyFiles yang menerima parameter jenis hewan, nama hewan dan nama files. Berikutnya panggil lagi fungsi createKeterangan yang akan menerima parameter jenis hewan, nama hewan, umur hewan, hewan ke berapa, dan berapa jumlah total hewan dalam gambar tersebut. &nbsp;
+untuk setiap perulangan, panggil fungsi createFolder yang akan menerima parameter jenis hewan yang dicek. setelah itu copyfiles dengan memanggil fungsi copyFiles yang menerima parameter jenis hewan, nama hewan dan nama files. Berikutnya panggil lagi fungsi createKeterangan yang akan menerima parameter jenis hewan, nama hewan, umur hewan, hewan ke berapa, dan berapa jumlah total hewan dalam gambar tersebut.  
+&nbsp;
 5. Fungsi createFolder
 ```c
 void createFolder(char *nameFolder){
@@ -423,7 +424,8 @@ void createFolder(char *nameFolder){
     while(wait(&status)>0);
 }
 ```
-pada fungsi ini kami membuat sebuah child process yang didalamnya akan membuat sebuah folder baru berdasarkan parameter yang diterima di dalam folder petshop. perintah yang kami gunakan adalah mkdir. tag "-p" digunakan untuk menghiraukan error jika file yang akan dibentuk sudah ada sebelumnya. &nbsp;
+pada fungsi ini kami membuat sebuah child process yang didalamnya akan membuat sebuah folder baru berdasarkan parameter yang diterima di dalam folder petshop. perintah yang kami gunakan adalah mkdir. tag "-p" digunakan untuk menghiraukan error jika file yang akan dibentuk sudah ada sebelumnya.  
+&nbsp;
 6. Fungsi copyFiles
 ```c
 void copyFiles(char *namaFolder, char *nama, char *namaFile){
