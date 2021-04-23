@@ -390,7 +390,57 @@ Hal yang berbeda dari kode template yang ada di github adalah : &nbsp;
 1. Kami menggunakan strtok untuk memecah nama file berdasarkan delimiter ";_" &nbsp;
 2. Setelah dipecah berdasarkan delimiter, hasil dari setiap delimeter tersebut kami simpan di array info. &nbsp;
 3. Karena dalam beberapa case terdapat 2 hewan dalam 1 gambar, maka kami membuat array info dengan dimensi 2, sehingga bisa menyimpan jenis pada index ke 0, nama pada index 1, dan umur pada index 2 untuk setiap hewan yang ada pada file yang diberikan &nbsp;
-
+```c
+while(token != NULL){
+    int data = 0;
+    while(data<3){
+        info[banyak][data] = token;
+        token = strtok(NULL, ";_");
+        data++;
+    }
+    banyak++;
+}
+```
+4. Setelah semua info dari nama files sudah ditampung dalam array info, setelah itu lakukan perulangan sebanyak jumlah hewan yang ada pada gambar. 
+```c
+for (int i = 0; i < banyak; i++) {
+    createFolder(info[i][0]);
+    copyFiles(info[i][0], info[i][1], str);
+    createKeterangan(info[i][0], info[i][1], info[i][2], i, banyak);
+}
+```
+untuk setiap perulangan, panggil fungsi createFolder yang akan menerima parameter jenis hewan yang dicek. setelah itu copyfiles dengan memanggil fungsi copyFiles yang menerima parameter jenis hewan, nama hewan dan nama files. Berikutnya panggil lagi fungsi createKeterangan yang akan menerima parameter jenis hewan, nama hewan, umur hewan, hewan ke berapa, dan berapa jumlah total hewan dalam gambar tersebut. &nbsp;
+5. Fungsi createFolder
+```c
+void createFolder(char *nameFolder){
+    int status = 0;
+    if(fork()==0){
+        char buf1[256];
+        snprintf(buf1, sizeof buf1, "petshop/%s", nameFolder);
+        char *argv[] = {"mkdir", "-p", buf1, NULL};
+        execv("/bin/mkdir", argv);
+    }
+    while(wait(&status)>0);
+}
+```
+pada fungsi ini kami membuat sebuah child process yang didalamnya akan membuat sebuah folder baru berdasarkan parameter yang diterima di dalam folder petshop. perintah yang kami gunakan adalah mkdir. tag "-p" digunakan untuk menghiraukan error jika file yang akan dibentuk sudah ada sebelumnya. &nbsp;
+6. Fungsi copyFiles
+```c
+void copyFiles(char *namaFolder, char *nama, char *namaFile){
+    int status = 0;
+    char buf1[256];
+    char buf2[256];
+    snprintf(buf1, sizeof buf1, "petshop/%s", namaFile);
+    snprintf(buf2, sizeof buf2, "petshop/%s/%s.jpg", namaFolder, nama);
+    printf("%s\n", buf1);
+    printf("%s\n", buf2);
+    if(fork()==0){
+        char *argv[] = {"cp", buf1, buf2, NULL};
+        execv("/bin/cp", argv);
+    }
+    while(wait(&status)>0);
+}
+```
 ### Code Soal 2
 ```c
 #include <dirent.h>
