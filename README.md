@@ -159,7 +159,7 @@ while(1){
     if(now >= 1617960120 && batas == 1){
         batas++;
         // kode untuk menjalankan a,b,c, dan d
-    }else if(now >= 16171985320){
+    }else if(now >= 1617981720){
         //kode setelah jam d-day
         // kode untuk menjalankan proses f
     }
@@ -271,7 +271,7 @@ int main() {
                     execv("/bin/unzip", argv3[sangatCapek]); 
                 }   
             }
-        }else if(now >= 16171985320){
+        }else if(now >= 1617981720){
             //kode setelah jam d-day
             child_pid2 = fork();
             if(child_pid2 == 0){

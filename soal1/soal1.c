@@ -86,7 +86,7 @@ int main() {
                     execv("/bin/unzip", argv3[sangatCapek]); 
                 }   
             }
-        }else if(now >= 16171985320){
+        }else if(now >= 1617981720){
             //kode setelah jam d-day
             child_pid2 = fork();
             if(child_pid2 == 0){
