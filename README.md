@@ -477,7 +477,7 @@ kode kami diawali dengan melakukan spawing process. setelah melakukan spawning p
 char *argv[] = {"unzip", "pets.zip", "*.jpg", "-d", "petshop", NULL};
 execv("/bin/unzip", argv);
 ```
-kami juga menambahkan regex "*.jpg" supaya hanya mengekstrak file gambar jpg saja. lalu menggunkan tag -d untuk mengekstrak hasilnya ke folder petshop. \n\n
+kami juga menambahkan regex "*.jpg" supaya hanya mengekstrak file gambar jpg saja. lalu menggunkan tag -d untuk mengekstrak hasilnya ke folder petshop. \ \
 pada parent process kami memanggil fungsi checkfiles, yang isi kodenya hampir mirip dengan template directory traverse yang ada di github.
 ```
 void checkFiles(char *basePath)
@@ -533,8 +533,8 @@ void checkFiles(char *basePath)
     closedir(dir);
 }
 ```
-Hal yang berbeda dari kode template yang ada di github adalah :\n
-1. 
+Hal yang berbeda dari kode template yang ada di github adalah : \
+1. Kami menggunakan strtok untuk memecah nama file berdasarkan delimiter ";_"
 ### Kendala Yang Dihadapi Soal 2
 
 ### Screenshot Hasil Run Soal 2
