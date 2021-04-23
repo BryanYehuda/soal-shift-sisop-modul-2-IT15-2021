@@ -411,7 +411,8 @@ for (int i = 0; i < banyak; i++) {
 ```
 untuk setiap perulangan, panggil fungsi createFolder yang akan menerima parameter jenis hewan yang dicek. setelah itu copyfiles dengan memanggil fungsi copyFiles yang menerima parameter jenis hewan, nama hewan dan nama files. Berikutnya panggil lagi fungsi createKeterangan yang akan menerima parameter jenis hewan, nama hewan, umur hewan, hewan ke berapa, dan berapa jumlah total hewan dalam gambar tersebut.  
 &nbsp;
-&nbsp;<br\>
+&nbsp;  
+
 5. Fungsi createFolder
 ```c
 void createFolder(char *nameFolder){
@@ -427,7 +428,8 @@ void createFolder(char *nameFolder){
 ```
 pada fungsi ini kami membuat sebuah child process yang didalamnya akan membuat sebuah folder baru berdasarkan parameter yang diterima di dalam folder petshop. perintah yang kami gunakan adalah mkdir. tag "-p" digunakan untuk menghiraukan error jika file yang akan dibentuk sudah ada sebelumnya.  
 &nbsp;
-&nbsp;<br\>
+&nbsp;  
+
 6. Fungsi copyFiles
 ```c
 void copyFiles(char *namaFolder, char *nama, char *namaFile){
@@ -447,7 +449,8 @@ void copyFiles(char *namaFolder, char *nama, char *namaFile){
 ```
 pada fungsi copy files ini kita hanya perlu mengcopy files dipetshop yang sama dengan var namaFile lalu dicopy ke folder petshop/namafolder/namahewan.jpg. penggunaan snprintf diatas ditujukan agar format files asal dan file tujuan jelas. var buf1 akan menyimpan letak file asal, dan var buf2 akan menyimpan letak file tujuan. lalu kami membuat process baru, pada child kami akan menjalankan proses copy ini. kami menggunakan perintah cp untuk melakukan tugas ini.  
 &nbsp;  
-&nbsp;<br\>
+&nbsp;  
+
 7. Fungsi createKeterangan
 ```c
 void createKeterangan(char *folder, char *namaHewan, char *umurHewan, int pembantu, int banyak){
@@ -473,7 +476,8 @@ void createKeterangan(char *folder, char *namaHewan, char *umurHewan, int pemban
 ```
 pada fungsi ini, umurHewan yang diparsing pada parameter masih terdapat ".jpg", lalu kami menggunakan strtok untuk menghapus ".jpg" nya. setelah dihapus digunakan fungsi snprintf yang akan membuat strings baru pada variabel buf1 yang akan berisi dimana letak keterangan.txt akan dibuat berdasarkan var folder yang sudah diterima sebagai parameter. unutk membuat sebuah file keterangan yang baru digunakan fungsi fopen. untuk menuliskan sesuatu pada file tersebut, digunakan fungsi fprintf. yang ditulis kedalam file tinggal disesuaikan dengan permintaan soal. lalu fclose digunakan untuk menutup file tersebut.  
 &nbsp;  
-&nbsp;<br\>
+&nbsp;  
+
 8. Fungsi deleteFiles
 ```c
 void deleteFiles(char *namaFiles){
@@ -636,7 +640,12 @@ int main()
 ### Kendala Yang Dihadapi Soal 2
 Kendala yang kami hadapi, kami sering menjumpai segmentation error. hal ini ternyata baru kami sadari bahwa saat ingin melakukan write ke sebuah file, pastikan permission nya sudah sesuai.
 ### Screenshot Hasil Run Soal 2
-
+folder yang terbentuk pada petshop
+![image](https://user-images.githubusercontent.com/50267676/115937070-1d2c0680-a4c1-11eb-9571-11dd32580637.png)
+contoh folder berdasarkan jenis hewannya
+![image](https://user-images.githubusercontent.com/50267676/115937093-2f0da980-a4c1-11eb-93f6-d29416d302ce.png)
+contoh keterangan.txt
+![image](https://user-images.githubusercontent.com/50267676/115937120-3d5bc580-a4c1-11eb-8819-e95bb67830f3.png)
 ---
 
 ## Soal 3
