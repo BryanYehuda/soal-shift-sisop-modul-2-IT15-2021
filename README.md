@@ -411,7 +411,7 @@ for (int i = 0; i < banyak; i++) {
 ```
 untuk setiap perulangan, panggil fungsi createFolder yang akan menerima parameter jenis hewan yang dicek. setelah itu copyfiles dengan memanggil fungsi copyFiles yang menerima parameter jenis hewan, nama hewan dan nama files. Berikutnya panggil lagi fungsi createKeterangan yang akan menerima parameter jenis hewan, nama hewan, umur hewan, hewan ke berapa, dan berapa jumlah total hewan dalam gambar tersebut.  
 &nbsp;
-&nbsp;
+&nbsp;<br/>
 5. Fungsi createFolder
 ```c
 void createFolder(char *nameFolder){
@@ -427,7 +427,7 @@ void createFolder(char *nameFolder){
 ```
 pada fungsi ini kami membuat sebuah child process yang didalamnya akan membuat sebuah folder baru berdasarkan parameter yang diterima di dalam folder petshop. perintah yang kami gunakan adalah mkdir. tag "-p" digunakan untuk menghiraukan error jika file yang akan dibentuk sudah ada sebelumnya.  
 &nbsp;
-&nbsp;
+&nbsp;<br/>
 6. Fungsi copyFiles
 ```c
 void copyFiles(char *namaFolder, char *nama, char *namaFile){
@@ -447,7 +447,7 @@ void copyFiles(char *namaFolder, char *nama, char *namaFile){
 ```
 pada fungsi copy files ini kita hanya perlu mengcopy files dipetshop yang sama dengan var namaFile lalu dicopy ke folder petshop/namafolder/namahewan.jpg. penggunaan snprintf diatas ditujukan agar format files asal dan file tujuan jelas. var buf1 akan menyimpan letak file asal, dan var buf2 akan menyimpan letak file tujuan. lalu kami membuat process baru, pada child kami akan menjalankan proses copy ini. kami menggunakan perintah cp untuk melakukan tugas ini.  
 &nbsp;  
-&nbsp;
+&nbsp;<br/>
 ### Code Soal 2
 ```c
 #include <dirent.h>
