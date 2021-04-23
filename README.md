@@ -57,7 +57,7 @@ Wget --no-check-certificate "https://drive.google.com/uc?id=1ZG8nRBRPquhYXq_sISd
 ### Penjelasan Code Soal 1
 ### a. Membuat folder fylm, musyik, dan juga pyoto
 untuk membuat folder tersebut, kami menggunakan kode sebagai berikut
-```
+```c
 char *argv[][6] = {{"mkdir","Fylm",NULL},{"mkdir","Musyik",NULL},{"mkdir","Pyoto",NULL}};
 for(int capek=0; capek<3;capek++){
     if(fork()==0) continue;
@@ -70,7 +70,7 @@ kami membuat perulangan for sebanyak 3 kali, dimana disetiap perulangan kami aka
 Mendownload dan melakukan ekstrak dan memindahkan ke folder yang sudah dibuat. untuk melakukan kedua tugas ini, kami menggunakan fungsi fork() untuk spawning proses baru. pada child kami akan melakukan download, lalu pada parent kami akan wait sampai proses di child selesai, lalu kami lakukan ekstrak setelahnya ke masing masing folder yang sudah dibuat pada soal a
 
 untuk proses mendownload zip kami menggunakan wget dan kami simpan di variabel argv1 dan dilakukan dalam proses child:
-```
+```c
 char *argv1[][10] = 
     {
         { "wget","-q","--no-check-certificate","https://drive.google.com/uc?id=1ktjGgDkL0nNpY-vT7rT7O6ZI47Ke9xcp&export=download", "-O","Film_for_Stevany.zip",NULL},
@@ -79,7 +79,7 @@ char *argv1[][10] =
     };
 ```
 untuk melakukan proses download, kami menggunakan perulangan for sebanyak 3, dan untuk setiap perulangan akan menjalankan 1 argumen dari variabel argv1
-```
+```c
 for(int mulaiCapek=0;mulaiCapek<3;mulaiCapek++){
     if(fork()==0) continue;
     sleep(10);
@@ -87,7 +87,7 @@ for(int mulaiCapek=0;mulaiCapek<3;mulaiCapek++){
 }
 ```
 Untuk melakukan ekstrak dari setiap zip yang sudah di download kami menggunakan perintah unzip yang kami simpan di variabel argv2
-```
+```c
 char *argv3[][10]= 
 {
     {"unzip","-j","Film_for_Stevany.zip","-d","./Fylm",NULL},
@@ -97,7 +97,7 @@ char *argv3[][10]=
 ```
 tag "-j" diperlukan supaya tidak membentuk sebuah folder baru jika di ektrak. Tag "-d" digunakan untuk menentukan zip yang akan diunzip akan diekstrak ke folder yang mana. dapat dilihat juga pada argv[2], bahwa kami menggunakan "*.jpg" hal ini digunakan agar program hanya mengekstrak file yang berekstensi jpg saja.
 Untuk menjalankan perintah tersebut, kami menggunakan perulangan for kembali sebanyak tiga kali
-```
+```c
 for(int sangatCapek=0; sangatCapek<3;sangatCapek++){
     if(fork()==0) continue;
     sleep(10);
@@ -108,7 +108,7 @@ untuk setiap for yang dilakukan, maka akan menjalankan perintah execv yang beris
 
 ### E dan F
 Untuk membuat program berjalan di latarbelakang, kami menggunakan template daemon proses yang sudah disediakan pada modul github. berikut adalah kode template nya
-```
+```c
 int main() {
   pid_t pid, sid;        // Variabel untuk menyimpan PID
 
@@ -149,7 +149,7 @@ int main() {
 }
 ```
 dalam kode while(1) tersebutlah kami akan memaksukkan kode yang sudah kami buat. Ada sebuah aturan dalam soal dimana proses a dan b berjalan 6 jam sebelum ulang tahun stefany. maka hal pertama yang kami lakukan adalah untuk mengubah tanggal ulang tahun stefany kedalam bentuk epoch time. sehingga didapatkan format 6 jam sebelum ulangtahun stefany adalah **1617960120** sedangkan waktu ulang tahun stefany adalah **16171985320**. Soal juga meminta untuk ketika sudah jam ulang tahunnya stefany maka semua folder yang sudah dibuat di zip kembali dengan format tertentu lalu dihapus. Untuk melakukan pengecekan time kami menggunakan library time.h. berikut adalah implementasi nya
-```
+```c
 time_t now = time(NULL);
 int batas = 1;
 while(1){
@@ -167,7 +167,7 @@ while(1){
 }
 ```
 dapat dilihat bahwa ketika waktu sudah 6 jam sebelum ulang tahun stefany maka jalankan kode a,b,c, dan d. sedangkan jika sudah pada jam ulang tahun stefany maka jalankan proses f. Untuk proses f kami memanggil fungsi fork() supaya bisa menjalankan 2 proses. 
-```
+```c
 child_pid2 = fork();
 if(child_pid2 == 0){
     char *zipAkhir[]= {"zip","-r","Lopyu_Stevany.zip","Fylm","Musyik","Pyoto",NULL};
@@ -326,13 +326,13 @@ Loba sangat mengapresiasi bantuanmu, minggu depan ia akan mentraktir makan malam
 
 ### Penjelasan Code Soal 2
 kode kami diawali dengan melakukan spawing process. setelah melakukan spawning process tersebut, pada child process kami menggunakan perintah unzip untuk melakukan unzip pada files pets.zip. 
-```
+```c
 char *argv[] = {"unzip", "pets.zip", "*.jpg", "-d", "petshop", NULL};
 execv("/bin/unzip", argv);
 ```
 kami juga menambahkan regex "*.jpg" supaya hanya mengekstrak file gambar jpg saja. lalu menggunkan tag -d untuk mengekstrak hasilnya ke folder petshop.<br/><br/>
 pada parent process kami memanggil fungsi checkfiles, yang isi kodenya hampir mirip dengan template directory traverse yang ada di github.
-```
+```c
 void checkFiles(char *basePath)
 {
     char path[1000];
