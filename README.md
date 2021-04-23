@@ -411,7 +411,7 @@ for (int i = 0; i < banyak; i++) {
 ```
 untuk setiap perulangan, panggil fungsi createFolder yang akan menerima parameter jenis hewan yang dicek. setelah itu copyfiles dengan memanggil fungsi copyFiles yang menerima parameter jenis hewan, nama hewan dan nama files. Berikutnya panggil lagi fungsi createKeterangan yang akan menerima parameter jenis hewan, nama hewan, umur hewan, hewan ke berapa, dan berapa jumlah total hewan dalam gambar tersebut.  
 &nbsp;
-&nbsp;<br/>
+&nbsp;<br\>
 5. Fungsi createFolder
 ```c
 void createFolder(char *nameFolder){
@@ -427,7 +427,7 @@ void createFolder(char *nameFolder){
 ```
 pada fungsi ini kami membuat sebuah child process yang didalamnya akan membuat sebuah folder baru berdasarkan parameter yang diterima di dalam folder petshop. perintah yang kami gunakan adalah mkdir. tag "-p" digunakan untuk menghiraukan error jika file yang akan dibentuk sudah ada sebelumnya.  
 &nbsp;
-&nbsp;<br/>
+&nbsp;<br\>
 6. Fungsi copyFiles
 ```c
 void copyFiles(char *namaFolder, char *nama, char *namaFile){
@@ -447,7 +447,44 @@ void copyFiles(char *namaFolder, char *nama, char *namaFile){
 ```
 pada fungsi copy files ini kita hanya perlu mengcopy files dipetshop yang sama dengan var namaFile lalu dicopy ke folder petshop/namafolder/namahewan.jpg. penggunaan snprintf diatas ditujukan agar format files asal dan file tujuan jelas. var buf1 akan menyimpan letak file asal, dan var buf2 akan menyimpan letak file tujuan. lalu kami membuat process baru, pada child kami akan menjalankan proses copy ini. kami menggunakan perintah cp untuk melakukan tugas ini.  
 &nbsp;  
-&nbsp;<br/>
+&nbsp;<br\>
+7. Fungsi createKeterangan
+```c
+void createKeterangan(char *folder, char *namaHewan, char *umurHewan, int pembantu, int banyak){
+    char *umur;
+    int status = 0;
+    umur = strtok(umurHewan, ".jpg");
+    char umurReal[100];
+    strcpy(umurReal, umur);
+    if(strcmp(umurReal, "0") == 0){
+        umur = "0.6";
+    }
+    char buf1[10000];
+    snprintf(buf1, sizeof buf1, "petshop/%s/keterangan.txt", folder);
+    printf("%s\n", buf1);
+    FILE *keterangan;
+    keterangan = fopen(buf1, "a+");
+    fprintf(keterangan, "nama : %s", namaHewan);
+    fprintf(keterangan, "\n");
+    fprintf(keterangan, "umur : %s tahun", umur);
+    fprintf(keterangan, "\n\n");
+    fclose(keterangan);
+}
+```
+pada fungsi ini, umurHewan yang diparsing pada parameter masih terdapat ".jpg", lalu kami menggunakan strtok untuk menghapus ".jpg" nya. setelah dihapus digunakan fungsi snprintf yang akan membuat strings baru pada variabel buf1 yang akan berisi dimana letak keterangan.txt akan dibuat berdasarkan var folder yang sudah diterima sebagai parameter. unutk membuat sebuah file keterangan yang baru digunakan fungsi fopen. untuk menuliskan sesuatu pada file tersebut, digunakan fungsi fprintf. yang ditulis kedalam file tinggal disesuaikan dengan permintaan soal. lalu fclose digunakan untuk menutup file tersebut.  
+&nbsp;  
+&nbsp;<br\>
+8. Fungsi deleteFiles
+```c
+void deleteFiles(char *namaFiles){
+    if(fork()==0){
+        chdir("/home/ianfelix/sisop/module2/petshop");
+        char *argv[] = {"rm", namaFiles, NULL};
+        execv("/bin/rm", argv);
+    }
+}
+```
+setelah proses perulangan selesai, lalu file yang sedang dicek ini akan dihapus. kami memindahkan directory kerja ke petshop dengan menggunakan perintah chdir. setelah kita berpindah kedalam folder petshop, tinggal dijalankan perintah rm untuk menghapus file yang ingin dihapus. nama file yang ingin dihapus tinggal diambil dari parameter yang sudah diterima oleh variabel namaFiles.
 ### Code Soal 2
 ```c
 #include <dirent.h>
@@ -597,7 +634,7 @@ int main()
 }
 ```
 ### Kendala Yang Dihadapi Soal 2
-
+Kendala yang kami hadapi, kami sering menjumpai segmentation error. hal ini ternyata baru kami sadari bahwa saat ingin melakukan write ke sebuah file, pastikan permission nya sudah sesuai.
 ### Screenshot Hasil Run Soal 2
 
 ---
