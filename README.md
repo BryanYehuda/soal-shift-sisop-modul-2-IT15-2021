@@ -322,8 +322,77 @@ Loba sangat mengapresiasi bantuanmu, minggu depan ia akan mentraktir makan malam
 * Tidak boleh menggunakan fungsi `system()`, `mkdir()`, dan `rename()`.
 * Menggunakan `fork` dan `exec`.
 
-### Code Soal 2
+
+
+### Penjelasan Code Soal 2
+kode kami diawali dengan melakukan spawing process. setelah melakukan spawning process tersebut, pada child process kami menggunakan perintah unzip untuk melakukan unzip pada files pets.zip. 
 ```
+char *argv[] = {"unzip", "pets.zip", "*.jpg", "-d", "petshop", NULL};
+execv("/bin/unzip", argv);
+```
+kami juga menambahkan regex "*.jpg" supaya hanya mengekstrak file gambar jpg saja. lalu menggunkan tag -d untuk mengekstrak hasilnya ke folder petshop.<br/><br/>
+pada parent process kami memanggil fungsi checkfiles, yang isi kodenya hampir mirip dengan template directory traverse yang ada di github.
+```
+void checkFiles(char *basePath)
+{
+    char path[1000];
+    struct dirent *dp;
+    DIR *dir = opendir(basePath);
+    char *token;
+
+    if (!dir)
+        return;
+
+    while ((dp = readdir(dir)) != NULL)
+    {
+        if (strcmp(dp->d_name, ".") != 0 && strcmp(dp->d_name, "..") != 0)
+        {
+            char nama[656];
+            char *str;
+            str = dp->d_name;
+            // printf("%s\n", dp->d_name);
+            snprintf(nama, sizeof nama, "%s", dp->d_name);
+            token  = strtok(nama, ";_");
+
+            
+            char kind[1600], name[1600], age[1600];
+            char *info[2][3];
+            int banyak=0;
+            while(token != NULL){
+                int data = 0;
+                while(data<3){
+                    info[banyak][data] = token;
+                    token = strtok(NULL, ";_");
+                    data++;
+                }
+                banyak++;
+            }
+            char *usia;
+            for (int i = 0; i < banyak; i++) {
+                createFolder(info[i][0]);
+                copyFiles(info[i][0], info[i][1], str);
+                createKeterangan(info[i][0], info[i][1], info[i][2], i, banyak);
+            }
+            deleteFiles(str);
+            // Construct new path from our base path
+            strcpy(path, basePath);
+            strcat(path, "/");
+            strcat(path, dp->d_name);
+
+            checkFiles(path);
+        }
+    }
+
+    closedir(dir);
+}
+```
+Hal yang berbeda dari kode template yang ada di github adalah : &nbsp;
+1. Kami menggunakan strtok untuk memecah nama file berdasarkan delimiter ";_" &nbsp;
+2. Setelah dipecah berdasarkan delimiter, hasil dari setiap delimeter tersebut kami simpan di array info. &nbsp;
+3. Karena dalam beberapa case terdapat 2 hewan dalam 1 gambar, maka kami membuat array info dengan dimensi 2, sehingga bisa menyimpan jenis pada index ke 0, nama pada index 1, dan umur pada index 2 untuk setiap hewan yang ada pada file yang diberikan &nbsp;
+
+### Code Soal 2
+```c
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -470,71 +539,6 @@ int main()
     return 0;
 }
 ```
-
-### Penjelasan Code Soal 2
-kode kami diawali dengan melakukan spawing process. setelah melakukan spawning process tersebut, pada child process kami menggunakan perintah unzip untuk melakukan unzip pada files pets.zip. 
-```
-char *argv[] = {"unzip", "pets.zip", "*.jpg", "-d", "petshop", NULL};
-execv("/bin/unzip", argv);
-```
-kami juga menambahkan regex "*.jpg" supaya hanya mengekstrak file gambar jpg saja. lalu menggunkan tag -d untuk mengekstrak hasilnya ke folder petshop.<br/><br/>
-pada parent process kami memanggil fungsi checkfiles, yang isi kodenya hampir mirip dengan template directory traverse yang ada di github.
-```
-void checkFiles(char *basePath)
-{
-    char path[1000];
-    struct dirent *dp;
-    DIR *dir = opendir(basePath);
-    char *token;
-
-    if (!dir)
-        return;
-
-    while ((dp = readdir(dir)) != NULL)
-    {
-        if (strcmp(dp->d_name, ".") != 0 && strcmp(dp->d_name, "..") != 0)
-        {
-            char nama[656];
-            char *str;
-            str = dp->d_name;
-            // printf("%s\n", dp->d_name);
-            snprintf(nama, sizeof nama, "%s", dp->d_name);
-            token  = strtok(nama, ";_");
-
-            
-            char kind[1600], name[1600], age[1600];
-            char *info[2][3];
-            int banyak=0;
-            while(token != NULL){
-                int data = 0;
-                while(data<3){
-                    info[banyak][data] = token;
-                    token = strtok(NULL, ";_");
-                    data++;
-                }
-                banyak++;
-            }
-            char *usia;
-            for (int i = 0; i < banyak; i++) {
-                createFolder(info[i][0]);
-                copyFiles(info[i][0], info[i][1], str);
-                createKeterangan(info[i][0], info[i][1], info[i][2], i, banyak);
-            }
-            deleteFiles(str);
-            // Construct new path from our base path
-            strcpy(path, basePath);
-            strcat(path, "/");
-            strcat(path, dp->d_name);
-
-            checkFiles(path);
-        }
-    }
-
-    closedir(dir);
-}
-```
-Hal yang berbeda dari kode template yang ada di github adalah : &nbsp;
-1. Kami menggunakan strtok untuk memecah nama file berdasarkan delimiter ";_"
 ### Kendala Yang Dihadapi Soal 2
 
 ### Screenshot Hasil Run Soal 2
