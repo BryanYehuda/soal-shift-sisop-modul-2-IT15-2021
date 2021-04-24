@@ -833,11 +833,110 @@ int main(int argc, char* argv[])
 ```
 
 ### Penjelasan Code Soal 3
+a. Membuat Folder dengan Timestamp
+```
+	strftime(waktu, 30, "%Y-%m-%d_%H:%M:%S", p1);
+
+        cid = fork();
+        if(cid < 0) exit(0);
+        if(cid == 0)
+        {
+            char *command[] = {"mkdir", waktu, NULL};
+            execv("/bin/mkdir", command);
+        }
+```
+Pertama-tama kami mengambil waktu terlebih dahulu menggunakan timestamp lalu dimasukan kedalam char waktu. Setelah itu kami membuat folder dengan memanggil mkdir menggunakan execv dan menggunakan char waktu sebagai nama foldernya.
+
+b. Download Gambar
+```
+	for(i = 0; i < 10; i++)
+            {
+                time_t n = time(NULL);
+                struct tm* local = localtime(&n);
+                strftime(waktu2, 30, "%Y-%m-%d_%H:%M:%S", local);
+                sprintf(link, "https://picsum.photos/%ld", (n % 1000) + 50);
+
+                cid3 = fork();
+                if(cid3 < 0) exit(0);
+                if(cid3 == 0)
+                {
+                    char *command[] = {"wget", link, "-O", waktu2, "-o", "/dev/null", NULL};
+                    execv("/usr/bin/wget", command);
+                }
+                sleep(5);
+```
+Untuk mendownload gambar dengan nama format timestamp juga caranya sama seperti soal bagian a. Untuk menjadikan gambar tersebut berbentuk persegi dengan ukuran (n%1000) + 50 pixel dimana n adalah detik Epoch Unix, kami menggunakan sprintf yang sebelumnya n sudah mengambil waktu local terlebih dahulu.
+
+c. File status.txt dengan Caesar Chiper Shift 5
+
+Berikut adalah kode untuk mengkonversi plain text menjadi chiper text
+```
+    char message[]="Download Success", cipher;
+	int j;
+	
+	for(j = 0; message[j] != '\0'; ++j){
+		cipher = message[j];
+		
+		if(cipher >= 'a' && cipher <= 'z'){
+			cipher = cipher + 5;
+			
+			if(cipher > 'z'){
+				cipher = cipher - 'z' + 'a' - 1;
+			}
+			
+			message[j] = cipher;
+		}
+		else if(cipher >= 'A' && cipher <= 'Z'){
+			cipher = cipher + 5;
+			
+			if(cipher > 'Z'){
+				cipher = cipher - 'Z' + 'A' - 1;
+			}
+			
+			message[j] = cipher;
+		}
+	}
+```
+Untuk memasukan hasil chiper yang sudah dibuat sebelumnya, kami menggunakan kode sebagai berikut.
+```
+            FILE * fptr;
+            fptr = fopen("status.txt", "w+");
+            fputs(message, fptr);
+            fclose(fptr);
+```
+Disini program akan membuat file yang bernama status.txt yang isinya adalah hasil dari chiper text diatas dengan menggunakan fputs.
+
+d & e
+Membuat Program Killer
+```
+    FILE* turnoff;
+    turnoff = fopen("turnoff.sh", "w");
+    fprintf(turnoff, "#!/bin/bash\nkill %d\nkill %d\necho \'Program Terminated.\'\nrm \"$0\"", getpid() + 2,getpid() + 3);
+    fclose(turnoff);
+```
+Untuk mematikan program, kami menggunakan program bash yang berisi kill %d dengan %d merupakan hasil dari pemanggilan pid dari programnya. Program bash ini akan memberhentikan parent proses yang sedang berjalan.
+
+Mode 1
+```
+    if(argv[1][1] == 'z') prctl(PR_SET_PDEATHSIG, SIGHUP);
+```
+Karena turnoff.sh hanya mematikan parentnya saja, maka diperlukan prctl() untuk mematikan semua proses child dengan mengirim signal ketika parentnya mati maka semua proses child dengan parent id di turnoff.sh akan mati.
+
+Mode 2
+```
+    if (getppid() != pid_before_fork) exit(1);
+```
+Berbeda dengan mode 1, mode 2 akan menyelesaikan semua proses terlebih dahulu setelah itu program akan berhenti. Untuk melakukan hal tersebut, kami membandingkan pid dari parent program dengan ppid program yang sedang berjalan. Ketika ppid program yang sedangan berjalan tidak sama dengan pid dari parent programnya maka program akan berhenti. Karena mode 2 harus menyelesaikan semua prosesnya, maka kode harus diletakkan di akhir program.
 
 ### Kendala Yang Dihadapai Soal 3
+Kebelumnya kami kebingungan karena saat program melakukan zip, tidak semua file masuk kedalam zip tersebut.
 
 ### Screenshot Hasil Run Soal 3
 
+![image](https://user-images.githubusercontent.com/73151866/115951293-32795300-a50a-11eb-801e-21db3a0a868f.png)
+![image](https://user-images.githubusercontent.com/73151866/115951298-373e0700-a50a-11eb-8c42-dbf0492c8a73.png)
+![image](https://user-images.githubusercontent.com/73151866/115951304-3b6a2480-a50a-11eb-97b1-220a33890f7f.png)
+![image](https://user-images.githubusercontent.com/73151866/115951306-3e651500-a50a-11eb-919b-245c380081ab.png)
 
 
 
