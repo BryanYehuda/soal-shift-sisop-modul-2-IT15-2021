@@ -833,7 +833,8 @@ int main(int argc, char* argv[])
 ```
 
 ### Penjelasan Code Soal 3
-a. Membuat Folder dengan Timestamp
+&nbsp;
+&nbsp;a. Membuat Folder dengan Timestamp
 ```c
 	strftime(waktu, 30, "%Y-%m-%d_%H:%M:%S", p1);
 
@@ -847,7 +848,8 @@ a. Membuat Folder dengan Timestamp
 ```
 Pertama-tama kami mengambil waktu terlebih dahulu menggunakan timestamp lalu dimasukan kedalam char waktu. Setelah itu kami membuat folder dengan memanggil mkdir menggunakan execv dan menggunakan char waktu sebagai nama foldernya.
 
-b. Download Gambar
+&nbsp;
+&nbsp;b. Download Gambar
 ```c
 	for(i = 0; i < 10; i++)
             {
@@ -867,7 +869,8 @@ b. Download Gambar
 ```
 Untuk mendownload gambar dengan nama format timestamp juga caranya sama seperti soal bagian a. Untuk menjadikan gambar tersebut berbentuk persegi dengan ukuran (n%1000) + 50 pixel dimana n adalah detik Epoch Unix, kami menggunakan sprintf yang sebelumnya n sudah mengambil waktu local terlebih dahulu.
 
-c. File status.txt dengan Caesar Chiper Shift 5
+&nbsp;
+&nbsp;c. File status.txt dengan Caesar Chiper Shift 5
 
 Berikut adalah kode untuk mengkonversi plain text menjadi chiper text
 ```c
@@ -906,8 +909,12 @@ Untuk memasukan hasil chiper yang sudah dibuat sebelumnya, kami menggunakan kode
 ```
 Disini program akan membuat file yang bernama status.txt yang isinya adalah hasil dari chiper text diatas dengan menggunakan fputs.
 
+&nbsp;
+&nbsp;
 d & e
-Membuat Program Killer
+
+&nbsp;
+&nbsp;Membuat Program Killer
 ```c
     FILE* turnoff;
     turnoff = fopen("turnoff.sh", "w");
@@ -916,13 +923,15 @@ Membuat Program Killer
 ```
 Untuk mematikan program, kami menggunakan program bash yang berisi kill %d dengan %d merupakan hasil dari pemanggilan pid dari programnya. Program bash ini akan memberhentikan parent proses yang sedang berjalan.
 
-Mode 1
+&nbsp;
+&nbsp;Mode 1
 ```c
     if(argv[1][1] == 'z') prctl(PR_SET_PDEATHSIG, SIGHUP);
 ```
 Karena turnoff.sh hanya mematikan parentnya saja, maka diperlukan prctl() untuk mematikan semua proses child dengan mengirim signal ketika parentnya mati maka semua proses child dengan parent id di turnoff.sh akan mati.
 
-Mode 2
+&nbsp;
+&nbsp;Mode 2
 ```c
     if (getppid() != pid_before_fork) exit(1);
 ```
