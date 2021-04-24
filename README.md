@@ -20,9 +20,10 @@ D. **memindahkannya** ke dalam folder yang telah dibuat (hanya file yang dimasuk
 E.  Untuk memudahkan Steven, ia ingin semua hal di atas berjalan **otomatis** 6 jam sebelum waktu ulang tahun Stevany).   
 F.  Setelah itu pada **waktu** ulang tahunnya Stevany, semua folder akan di zip dengan nama **Lopyu_Stevany.zip** dan semua folder akan di **delete** (sehingga hanya menyisakan .zip). Kemudian Steven meminta bantuanmu yang memang sudah jago sisop untuk membantunya mendapatkan hati Stevany. Bantu Woy!! 
   
-  
+
 ### Penjelasan Code Soal 1
-### a. Dikarenakan Stevany sangat menyukai huruf Y, Steven ingin nama folder-foldernya adalah **Musyik** untuk mp3, **Fylm** untuk mp4, dan **Pyoto** untuk jpg
+### 1a. 
+Dikarenakan Stevany sangat menyukai huruf Y, Steven ingin nama folder-foldernya adalah **Musyik** untuk mp3, **Fylm** untuk mp4, dan **Pyoto** untuk jpg
 untuk membuat folder tersebut, kami menggunakan kode sebagai berikut
 ```c
 char *argv[][6] = {{"mkdir","Fylm",NULL},{"mkdir","Musyik",NULL},{"mkdir","Pyoto",NULL}};
