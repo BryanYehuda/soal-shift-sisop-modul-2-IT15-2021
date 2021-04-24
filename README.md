@@ -834,7 +834,7 @@ int main(int argc, char* argv[])
 
 ### Penjelasan Code Soal 3
 a. Membuat Folder dengan Timestamp
-```
+```c
 	strftime(waktu, 30, "%Y-%m-%d_%H:%M:%S", p1);
 
         cid = fork();
@@ -848,7 +848,7 @@ a. Membuat Folder dengan Timestamp
 Pertama-tama kami mengambil waktu terlebih dahulu menggunakan timestamp lalu dimasukan kedalam char waktu. Setelah itu kami membuat folder dengan memanggil mkdir menggunakan execv dan menggunakan char waktu sebagai nama foldernya.
 
 b. Download Gambar
-```
+```c
 	for(i = 0; i < 10; i++)
             {
                 time_t n = time(NULL);
@@ -870,7 +870,7 @@ Untuk mendownload gambar dengan nama format timestamp juga caranya sama seperti 
 c. File status.txt dengan Caesar Chiper Shift 5
 
 Berikut adalah kode untuk mengkonversi plain text menjadi chiper text
-```
+```c
     char message[]="Download Success", cipher;
 	int j;
 	
@@ -898,7 +898,7 @@ Berikut adalah kode untuk mengkonversi plain text menjadi chiper text
 	}
 ```
 Untuk memasukan hasil chiper yang sudah dibuat sebelumnya, kami menggunakan kode sebagai berikut.
-```
+```c
             FILE * fptr;
             fptr = fopen("status.txt", "w+");
             fputs(message, fptr);
@@ -908,7 +908,7 @@ Disini program akan membuat file yang bernama status.txt yang isinya adalah hasi
 
 d & e
 Membuat Program Killer
-```
+```c
     FILE* turnoff;
     turnoff = fopen("turnoff.sh", "w");
     fprintf(turnoff, "#!/bin/bash\nkill %d\nkill %d\necho \'Program Terminated.\'\nrm \"$0\"", getpid() + 2,getpid() + 3);
@@ -917,13 +917,13 @@ Membuat Program Killer
 Untuk mematikan program, kami menggunakan program bash yang berisi kill %d dengan %d merupakan hasil dari pemanggilan pid dari programnya. Program bash ini akan memberhentikan parent proses yang sedang berjalan.
 
 Mode 1
-```
+```c
     if(argv[1][1] == 'z') prctl(PR_SET_PDEATHSIG, SIGHUP);
 ```
 Karena turnoff.sh hanya mematikan parentnya saja, maka diperlukan prctl() untuk mematikan semua proses child dengan mengirim signal ketika parentnya mati maka semua proses child dengan parent id di turnoff.sh akan mati.
 
 Mode 2
-```
+```c
     if (getppid() != pid_before_fork) exit(1);
 ```
 Berbeda dengan mode 1, mode 2 akan menyelesaikan semua proses terlebih dahulu setelah itu program akan berhenti. Untuk melakukan hal tersebut, kami membandingkan pid dari parent program dengan ppid program yang sedang berjalan. Ketika ppid program yang sedangan berjalan tidak sama dengan pid dari parent programnya maka program akan berhenti. Karena mode 2 harus menyelesaikan semua prosesnya, maka kode harus diletakkan di akhir program.
