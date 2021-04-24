@@ -44,7 +44,9 @@ wget --no-check-certificate "https://drive.google.com/uc?id=ID-FILE&export=downl
 ```c
 Wget --no-check-certificate "https://drive.google.com/uc?id=1ZG8nRBRPquhYXq_sISdsVcXx5VdEgi-J&export=download" -O Musik_for_Stevany.zip
 ```
-<br><br><br>
+  
+
+  
 ### Penjelasan Code Soal 1
 ### a. Membuat folder fylm, musyik, dan juga pyoto
 untuk membuat folder tersebut, kami menggunakan kode sebagai berikut
