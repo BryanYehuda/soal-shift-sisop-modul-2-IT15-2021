@@ -18,37 +18,11 @@ B. untuk musik Steven **mendownloadnya** dari link di bawah, film dari link di b
 C. Steven tidak ingin isi folder yang dibuatnya berisikan zip, sehingga perlu **meng-extract-nya** setelah didownload serta  
 D. **memindahkannya** ke dalam folder yang telah dibuat (hanya file yang dimasukkan).  
 E.  Untuk memudahkan Steven, ia ingin semua hal di atas berjalan **otomatis** 6 jam sebelum waktu ulang tahun Stevany).   
-F.  Setelah itu pada **waktu** ulang tahunnya Stevany, semua folder akan di zip dengan nama **Lopyu_Stevany.zip** dan semua folder akan di **delete** (sehingga hanya menyisakan .zip). Kemudian Steven meminta bantuanmu yang memang sudah jago sisop untuk membantunya mendapatkan hati Stevany. Bantu Woy!!
-
-### Notes Soal 1
-
-* Ulang Tahun Stevany : 09 April Pukul 22.22 WIB
-* Semua poin dijalankan oleh 1 script di latar belakang, termasuk mendownload file zip-nya. Jadi cukup jalankan script 1x serta ubah time dan date untuk check hasilnya.
-* Tidak boleh menggunakan fungsi `system(`), `mkdir()`, dan `rename()`
-* Tidak boleh pake `cron` !!!
-* Menggunakan `fork` dan `exec`.
-
-### Link Soal 1
-* Preview: https://drive.google.com/drive/folders/1NzRiPPoVlR_H8P51cxN4jaceeFQGk4un
-* Foto: https://drive.google.com/file/d/1FsrAzb9B5ixooGUs0dGiBr-rC7TS9wTD/view
-* Musik: https://drive.google.com/file/d/1ZG8nRBRPquhYXq_sISdsVcXx5VdEgi-J/view
-* Film: https://drive.google.com/file/d/1ktjGgDkL0nNpY-vT7rT7O6ZI47Ke9xcp/view
-
-### Tips Soal 1
-* Gunakan fungsi `wait()` dan `sleep()` untuk memperlancar
-* untuk mendownload zip yang dibutuhkan bisa menggunakan command :
-```c
-wget --no-check-certificate "https://drive.google.com/uc?id=ID-FILE&export=download" -O Nama_untuk_filenya.ext
-```
-* contoh penggunaan command :
-```c
-Wget --no-check-certificate "https://drive.google.com/uc?id=1ZG8nRBRPquhYXq_sISdsVcXx5VdEgi-J&export=download" -O Musik_for_Stevany.zip
-```
+F.  Setelah itu pada **waktu** ulang tahunnya Stevany, semua folder akan di zip dengan nama **Lopyu_Stevany.zip** dan semua folder akan di **delete** (sehingga hanya menyisakan .zip). Kemudian Steven meminta bantuanmu yang memang sudah jago sisop untuk membantunya mendapatkan hati Stevany. Bantu Woy!! 
   
-
-\ 
+  
 ### Penjelasan Code Soal 1
-### a. Membuat folder fylm, musyik, dan juga pyoto
+### a. Dikarenakan Stevany sangat menyukai huruf Y, Steven ingin nama folder-foldernya adalah **Musyik** untuk mp3, **Fylm** untuk mp4, dan **Pyoto** untuk jpg
 untuk membuat folder tersebut, kami menggunakan kode sebagai berikut
 ```c
 char *argv[][6] = {{"mkdir","Fylm",NULL},{"mkdir","Musyik",NULL},{"mkdir","Pyoto",NULL}};
