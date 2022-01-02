@@ -7,7 +7,7 @@
 3. Ian Felix Jonathan Simanjuntak
 4. Muhammad Nur Fauzan
 
-## Soal 1
+# Soal 1
 
 Pada suatu masa, hiduplah seorang Steven yang hidupnya pas-pasan. Steven punya pacar, namun sudah putus sebelum pacaran. Ketika dia galau memikirkan mantan, ia selalu menonton [Video Youtube ini](https://www.youtube.com/watch?v=568DH_9CMKI)  untuk menghilangkan kesedihannya. Di lain hal Steven anak yang tidak amat sangat super membenci matkul sisop, beberapa jam setelah diputus oleh pacarnya dia menemukan wanita lain bernama Stevany, namun Stevany berkebalikan dengan Steven karena menyukai sisop. Steven ingin terlihat jago matkul sisop demi menarik perhatian Stevany. Pada hari ulang tahun Stevany, Steven ingin memberikan Stevany zip berisikan hal-hal yang disukai Stevany. Steven ingin isi zipnya menjadi rapi dengan membuat folder masing-masing sesuai extensi.
 
@@ -157,7 +157,7 @@ Pada parent proses kami menggunakan perintah "rm" untuk menghapus folder folder 
 ![image](https://user-images.githubusercontent.com/50267676/115584510-0638b900-a2f5-11eb-8dda-dfb3cc671cb2.png)
 ---
 
-## Soal 2
+# Soal 2
 
 Loba bekerja di sebuah petshop terkenal, suatu saat dia mendapatkan zip yang berisi banyak sekali foto peliharaan dan Ia diperintahkan untuk mengkategorikan foto-foto peliharaan tersebut. Loba merasa kesusahan melakukan pekerjaanya secara manual, apalagi ada kemungkinan ia akan diperintahkan untuk melakukan hal yang sama. Kamu adalah teman baik Loba dan Ia meminta bantuanmu untuk membantu pekerjaannya.
 
@@ -342,7 +342,7 @@ Kendala yang kami hadapi, kami sering menjumpai segmentation error. hal ini tern
 ![image](https://user-images.githubusercontent.com/50267676/115937093-2f0da980-a4c1-11eb-93f6-d29416d302ce.png)
 ![image](https://user-images.githubusercontent.com/50267676/115937120-3d5bc580-a4c1-11eb-8819-e95bb67830f3.png)
 
-## Soal 3
+# Soal 3
 
 Ranora adalah mahasiswa Teknik Informatika yang saat ini sedang menjalani magang di perusahan ternama yang bernama “FakeKos Corp.”, perusahaan yang bergerak dibidang keamanan data. Karena Ranora masih magang, maka beban tugasnya tidak sebesar beban tugas pekerja tetap perusahaan. Di hari pertama Ranora bekerja, pembimbing magang Ranora memberi tugas pertamanya untuk membuat sebuah program.
 
